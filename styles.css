@@ -1,0 +1,159 @@
+/* =====================
+   Global
+===================== */
+* {
+  box-sizing: border-box;
+  font-family: "Cairo", "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #e3f2fd, #ffffff);
+  min-height: 100vh;
+}
+
+/* =====================
+   Top Buttons
+===================== */
+.choose {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px;
+}
+
+.choose button {
+  padding: 10px 22px;
+  font-size: 16px;
+  background: linear-gradient(135deg, #1976d2, #2196f3);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  transition: 0.2s;
+}
+
+.choose button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+}
+
+/* =====================
+   Title
+===================== */
+.type {
+  text-align: center;
+  color: #0d47a1;
+  margin: 4px 0 10px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* =====================
+   Main Container
+===================== */
+.main {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 8px;
+}
+
+/* =====================
+   Form Card
+===================== */
+.parent {
+  background: #fff;
+  padding: 14px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* =====================
+   Inputs Grid
+===================== */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+label {
+  font-size: 13px;
+  color: #0d47a1;
+  font-weight: 600;
+}
+
+input {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 14px;
+  border-radius: 10px;
+  border: 2px solid #bbdefb;
+  outline: none;
+}
+
+input:focus {
+  border-color: #1976d2;
+}
+
+/* =====================
+   Submit Buttons
+===================== */
+.submit {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.submit button {
+  flex: 1;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+}
+
+.submit button:first-child {
+  background: #1976d2;
+  color: #fff;
+}
+
+.reset {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+/* =====================
+   Output Section
+===================== */
+.output {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.out {
+  background: #fff;
+  padding: 8px 10px;
+  border-right: 5px solid #1976d2;
+  border-radius: 10px;
+  font-size: 13px;
+  color: #0d47a1;
+  line-height: 1.4;
+}
+
+/* =====================
+   Desktop Layout
+===================== */
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .output {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
