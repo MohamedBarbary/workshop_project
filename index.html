@@ -10,8 +10,8 @@
 
   <!-- top buttons -->
   <div class="choose">
-    <button id="shapeBtn">مشغولات</button>
-    <button id="pipeBtn">مواسير</button>
+    <button id="shapeBtn" type="button">مشغولات</button>
+    <button id="pipeBtn" type="button">مواسير</button>
   </div>
 
   <h1 class="type">اختر نوع التشغيل</h1>
@@ -25,22 +25,22 @@
 
         <div>
           <label>قطر الخامة (مم)</label>
-          <input class="diameter" type="number" required>
+          <input class="diameter" type="text" required>
         </div>
 
         <div>
           <label>سعر الكيلو (جنيه)</label>
-          <input class="k_price" type="number" required>
+          <input class="k_price" type="text" required>
         </div>
 
         <div>
           <label>طول الخامة (مم)</label>
-          <input class="mat_length" type="number" required>
+          <input class="mat_length" type="text" required>
         </div>
 
         <div>
           <label>عدد الطلب</label>
-          <input class="order" type="number" required>
+          <input class="order" type="text" required>
         </div>
 
         <!-- dynamic area -->
@@ -48,12 +48,12 @@
 
         <div>
           <label>الوزن بعد التشغيل (كجم)</label>
-          <input class="afterWeight" type="number" step="0.0001" required>
+          <input class="afterWeight" type="text" required>
         </div>
 
         <div>
           <label>سعر الهالك (جنيه / كجم)</label>
-          <input class="scrapPrice" type="number" step="0.01" required>
+          <input class="scrapPrice" type="text" required>
         </div>
 
       </div>
