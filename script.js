@@ -45,7 +45,6 @@ document.getElementById("pipeBtn").onclick = () => {
 
 /* math */
 const PI = Math.PI;
-
 const square = (d) => d * d * 0.001;
 const round = (d) => PI * 0.001 * (d / 2) ** 2;
 const hex = (d) => 12 * 0.5 * 0.001 * (d / 2) * (d / 2 / Math.sqrt(3));
@@ -54,7 +53,7 @@ const pipe = (d, t) => PI * d * t * 0.001;
 /* helper to safely parse float */
 function parseInput(selector) {
   const el = document.querySelector(selector);
-  const val = parseFloat(el.value.trim());
+  const val = parseFloat(el.value.trim().replace(",", "."));
   return isNaN(val) ? 0 : val;
 }
 
@@ -107,15 +106,16 @@ form.addEventListener("submit", (e) => {
   const scrapUnitPrice = scrapWeight * scrapPrice;
   const scrapMeterPrice = scrapUnitPrice * units;
 
-  o1.textContent = `وزن المتر: ${weightMeter.toFixed(3)} كجم`;
-  o2.textContent = `سعر المتر: ${meterPrice.toFixed(2)} جنيه`;
-  o3.textContent = `عدد الوحدات / متر: ${units.toFixed(2)}`;
-  o4.textContent = `تكلفة القطعة: ${unitCost.toFixed(2)} جنيه`;
-  o5.textContent = `عدد الأمتار للطلب: ${metersOrder.toFixed(3)} م`;
-  o6.textContent = `وزن الطلب: ${orderWeight.toFixed(3)} كجم`;
-  o7.textContent = `الوزن قبل التشغيل: ${beforeOp.toFixed(4)} كجم`;
-  o8.textContent = `وزن الهالك: ${scrapWeight.toFixed(4)} كجم`;
-  o9.textContent = `إجمالي هالك المتر: ${scrapMeter.toFixed(4)} كجم`;
-  o10.textContent = `سعر الهالك: ${scrapUnitPrice.toFixed(2)} جنيه`;
-  o11.textContent = `إجمالي سعر هالك المتر: ${scrapMeterPrice.toFixed(2)} جنيه`;
+  // output
+  document.getElementById("o1").textContent = `وزن المتر: ${weightMeter.toFixed(3)} كجم`;
+  document.getElementById("o2").textContent = `سعر المتر: ${meterPrice.toFixed(2)} جنيه`;
+  document.getElementById("o3").textContent = `عدد الوحدات / متر: ${units.toFixed(2)}`;
+  document.getElementById("o4").textContent = `تكلفة القطعة: ${unitCost.toFixed(2)} جنيه`;
+  document.getElementById("o5").textContent = `عدد الأمتار للطلب: ${metersOrder.toFixed(3)} م`;
+  document.getElementById("o6").textContent = `وزن الطلب: ${orderWeight.toFixed(3)} كجم`;
+  document.getElementById("o7").textContent = `الوزن قبل التشغيل: ${beforeOp.toFixed(4)} كجم`;
+  document.getElementById("o8").textContent = `وزن الهالك: ${scrapWeight.toFixed(4)} كجم`;
+  document.getElementById("o9").textContent = `إجمالي هالك المتر: ${scrapMeter.toFixed(4)} كجم`;
+  document.getElementById("o10").textContent = `سعر الهالك: ${scrapUnitPrice.toFixed(2)} جنيه`;
+  document.getElementById("o11").textContent = `إجمالي سعر هالك المتر: ${scrapMeterPrice.toFixed(2)} جنيه`;
 });
