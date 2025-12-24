@@ -4,7 +4,7 @@ const form = document.getElementById("calcForm");
 
 let mode = null;
 
-/* dynamic HTML */
+/* Dynamic HTML */
 const shapeHTML = `
   <div>
     <label>نوع الخامة</label>
@@ -26,11 +26,11 @@ const shapeHTML = `
 const pipeHTML = `
   <div>
     <label>سُمك الماسورة (مم)</label>
-    <input class="thickness" type="text" required>
+    <input class="thickness" type="number" step="any" required>
   </div>
 `;
 
-/* buttons */
+/* Buttons */
 document.getElementById("shapeBtn").onclick = () => {
   mode = "shape";
   typeTitle.textContent = "مشغولات";
@@ -43,52 +43,41 @@ document.getElementById("pipeBtn").onclick = () => {
   dynamic.innerHTML = pipeHTML;
 };
 
-/* math */
+/* Math functions */
 const PI = Math.PI;
+
 const square = (d) => d * d * 0.001;
 const round = (d) => PI * 0.001 * (d / 2) ** 2;
-const hex = (d) => 12 * 0.5 * 0.001 * (d / 2) * (d / 2 / Math.sqrt(3));
+const hex = (d) => 12 * 0.5 * 0.001 * (d / 2) * ((d / 2) / Math.sqrt(3));
 const pipe = (d, t) => PI * d * t * 0.001;
 
-/* helper to safely parse float */
-function parseInput(selector) {
-  const el = document.querySelector(selector);
-  const val = parseFloat(el.value.trim().replace(",", "."));
-  return isNaN(val) ? 0 : val;
-}
-
-/* submit */
+/* Form submit */
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const d = parseInput(".diameter");
-  const priceKg = parseInput(".k_price");
-  const length = parseInput(".mat_length");
-  const order = parseInput(".order");
-  const afterWeight = parseInput(".afterWeight");
-  const scrapPrice = parseInput(".scrapPrice");
+  const d = parseFloat(document.querySelector(".diameter").value) || 0;
+  const priceKg = parseFloat(document.querySelector(".k_price").value) || 0;
+  const length = parseFloat(document.querySelector(".mat_length").value) || 0;
+  const order = parseFloat(document.querySelector(".order").value) || 0;
+  const afterWeight = parseFloat(document.querySelector(".afterWeight").value) || 0;
+  const scrapPrice = parseFloat(document.querySelector(".scrapPrice").value) || 0;
 
-  let size = 0,
-      density = 0;
+  let size = 0, density = 0;
 
   if (mode === "shape") {
     const mat = document.querySelector(".material").value;
 
-    density = mat.includes("حديد")
-      ? 7.87
-      : mat.includes("أصفر")
-      ? 8.73
-      : mat.includes("أحمر")
-      ? 8.96
-      : 0;
+    density = mat.includes("حديد") ? 7.87 :
+              mat.includes("أصفر") ? 8.73 :
+              mat.includes("أحمر") ? 8.96 : 0;
 
     if (mat.includes("مربع")) size = square(d);
-    if (mat.includes("ملفوف")) size = round(d);
-    if (mat.includes("سداسي")) size = hex(d);
+    else if (mat.includes("ملفوف")) size = round(d);
+    else if (mat.includes("سداسي")) size = hex(d);
   }
 
   if (mode === "pipe") {
-    const t = parseInput(".thickness");
+    const t = parseFloat(document.querySelector(".thickness").value) || 0;
     density = 7.87;
     size = pipe(d, t);
   }
@@ -106,7 +95,7 @@ form.addEventListener("submit", (e) => {
   const scrapUnitPrice = scrapWeight * scrapPrice;
   const scrapMeterPrice = scrapUnitPrice * units;
 
-  // output
+  // Output
   document.getElementById("o1").textContent = `وزن المتر: ${weightMeter.toFixed(3)} كجم`;
   document.getElementById("o2").textContent = `سعر المتر: ${meterPrice.toFixed(2)} جنيه`;
   document.getElementById("o3").textContent = `عدد الوحدات / متر: ${units.toFixed(2)}`;
