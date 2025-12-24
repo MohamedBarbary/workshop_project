@@ -26,7 +26,7 @@ const shapeHTML = `
 const pipeHTML = `
   <div>
     <label>سُمك الماسورة (مم)</label>
-    <input class="thickness" type="number" required>
+    <input class="thickness" type="text" required>
   </div>
 `;
 
@@ -51,18 +51,26 @@ const round = (d) => PI * 0.001 * (d / 2) ** 2;
 const hex = (d) => 12 * 0.5 * 0.001 * (d / 2) * (d / 2 / Math.sqrt(3));
 const pipe = (d, t) => PI * d * t * 0.001;
 
+/* helper to safely parse float */
+function parseInput(selector) {
+  const el = document.querySelector(selector);
+  const val = parseFloat(el.value.trim());
+  return isNaN(val) ? 0 : val;
+}
+
 /* submit */
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const d = +document.querySelector(".diameter").value;
-  const priceKg = +document.querySelector(".k_price").value;
-  const length = +document.querySelector(".mat_length").value;
-  const order = +document.querySelector(".order").value;
-  const afterWeight = +document.querySelector(".afterWeight").value;
-  const scrapPrice = +document.querySelector(".scrapPrice").value;
+  const d = parseInput(".diameter");
+  const priceKg = parseInput(".k_price");
+  const length = parseInput(".mat_length");
+  const order = parseInput(".order");
+  const afterWeight = parseInput(".afterWeight");
+  const scrapPrice = parseInput(".scrapPrice");
 
-  let size, density;
+  let size = 0,
+      density = 0;
 
   if (mode === "shape") {
     const mat = document.querySelector(".material").value;
@@ -81,7 +89,7 @@ form.addEventListener("submit", (e) => {
   }
 
   if (mode === "pipe") {
-    const t = +document.querySelector(".thickness").value;
+    const t = parseInput(".thickness");
     density = 7.87;
     size = pipe(d, t);
   }
