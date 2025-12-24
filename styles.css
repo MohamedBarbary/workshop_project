@@ -132,7 +132,7 @@ input:focus {
    Output (Collapsible)
 ===================== */
 .output {
-  margin-top: 8px;
+  margin-top: 9px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 6px;
@@ -175,7 +175,7 @@ input:focus {
 
   .output {
     grid-template-columns: 1fr;
-    max-height: 30vh;
+    max-height: 33vh;
   }
 }
 
@@ -207,5 +207,6 @@ input:focus {
     font-size: 11px;
   }
 }
+
 
 
