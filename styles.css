@@ -7,13 +7,12 @@
 }
 
 html, body {
-  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
   background: linear-gradient(180deg, #e3f2fd, #ffffff);
-  overflow-x: hidden;
 }
 
 /* =====================
@@ -42,7 +41,7 @@ body {
 .type {
   text-align: center;
   color: #0d47a1;
-  margin: 2px 0 6px;
+  margin: 4px 0 8px;
   font-size: 20px;
   font-weight: 700;
 }
@@ -52,7 +51,7 @@ body {
 ===================== */
 .main {
   max-width: 900px;
-  margin: 0 auto;
+  margin: auto;
   padding: 6px;
 }
 
@@ -61,7 +60,7 @@ body {
 ===================== */
 .parent {
   background: #fff;
-  padding: 10px;
+  padding: 12px;
   border-radius: 14px;
   box-shadow: 0 6px 14px rgba(0,0,0,0.08);
 }
@@ -72,7 +71,7 @@ body {
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
+  gap: 10px;
 }
 
 label {
@@ -83,7 +82,7 @@ label {
 
 input {
   width: 100%;
-  padding: 6px 8px;
+  padding: 7px 8px;
   font-size: 13px;
   border-radius: 8px;
   border: 2px solid #bbdefb;
@@ -95,18 +94,17 @@ input:focus {
 }
 
 /* =====================
-   Sticky Submit Bar
+   Sticky Submit
 ===================== */
 .submit {
   position: sticky;
   bottom: 0;
-  background: white;
+  background: #fff;
   padding: 8px;
-  margin-top: 8px;
+  margin-top: 10px;
   display: flex;
   gap: 8px;
   border-top: 1px solid #bbdefb;
-  z-index: 10;
 }
 
 .submit button {
@@ -129,40 +127,38 @@ input:focus {
 }
 
 /* =====================
-   Output (Collapsible)
+   Output (NO SCROLL)
 ===================== */
 .output {
-  margin-top: 9px;
+  margin-top: 10px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 6px;
-  max-height: 40vh;
-  overflow-y: auto;
+  gap: 8px;
 }
 
-/* result cards */
+/* result card */
 .out {
-  margin: 0;
-  background: #fff;
-  padding: 6px 8px;
+  background: #ffffff;
+  padding: 8px 10px;
   border-right: 4px solid #1976d2;
   border-radius: 8px;
-  font-size: 12px;
+  font-size: 13px;
   color: #0d47a1;
-  line-height: 1.2;
+  line-height: 1.4;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
 }
 
 /* =====================
-   Collapsible Groups
+   Collapsible (clean)
 ===================== */
-/* First 7 = main results */
 .out:nth-child(n+8) {
   display: none;
 }
 
-/* Expand when hovering output area */
-.output:hover .out {
-  display: block;
+.output.show-all .out {
+  display: flex;
 }
 
 /* =====================
@@ -175,18 +171,13 @@ input:focus {
 
   .output {
     grid-template-columns: 1fr;
-    max-height: 33vh;
   }
 }
 
 /* =====================
-   Print Friendly
+   Print
 ===================== */
 @media print {
-  body {
-    background: white;
-  }
-
   .choose,
   .submit {
     display: none;
@@ -197,16 +188,4 @@ input:focus {
     box-shadow: none;
     border: 1px solid #000;
   }
-
-  .output {
-    max-height: none;
-    overflow: visible;
-  }
-
-  .out {
-    font-size: 11px;
-  }
 }
-
-
-
