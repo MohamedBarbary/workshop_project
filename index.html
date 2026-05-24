@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>حاسبة الورشة</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+        <h1>حاسبة الورشة</h1>
+      </div>
+      <p class="subtitle">أداة احترافية لحساب الخامات</p>
+    </header>
+
+    <!-- top buttons -->
+    <div class="choose-wrapper">
+      <div class="choose">
+        <button id="shapeBtn" type="button">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg>
+          مشغولات
+        </button>
+        <button id="pipeBtn" type="button">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle></svg>
+          مواسير
+        </button>
+      </div>
+    </div>
+
+    <div class="main">
+      <form id="calcForm" class="parent card">
+        
+        <div class="grid">
+          <div class="input-group">
+            <label>قطر الخامة (مم)</label>
+            <input class="diameter" type="number" step="any" required placeholder="مثال: 50">
+          </div>
+
+          <div class="input-group">
+            <label>سعر الكيلو (جنيه)</label>
+            <input class="k_price" type="number" step="any" required placeholder="0.00">
+          </div>
+
+          <div class="input-group">
+            <label>طول الخامة (مم)</label>
+            <input class="mat_length" type="number" step="any" required placeholder="مثال: 1000">
+          </div>
+
+          <div class="input-group">
+            <label>عدد الطلب</label>
+            <input class="order" type="number" step="any" required placeholder="الكمية المطلوبة">
+          </div>
+
+          <!-- dynamic area -->
+          <div id="dynamic" style="grid-column: 1 / -1; margin-top: -8px;"></div>
+
+          <div class="input-group">
+            <label>الوزن بعد التشغيل (كجم)</label>
+            <input class="afterWeight" type="number" step="any" required placeholder="0.0000">
+          </div>
+
+          <div class="input-group">
+            <label>سعر الهالك (جنيه / كجم)</label>
+            <input class="scrapPrice" type="number" step="any" required placeholder="0.00">
+          </div>
+        </div>
+
+        <div class="submit-actions">
+          <button type="submit" class="btn-primary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            احسب التكلفة
+          </button>
+          <button type="reset" class="btn-secondary reset">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path><polyline points="21 3 21 8 16 8"></polyline></svg>
+            مسح البيانات
+          </button>
+        </div>
+      </form>
+
+      <!-- output -->
+      <div class="output-container card" id="outputSection">
+        <h3>نتائج الحسابات</h3>
+        <div class="output">
+          <div class="out-item"><span class="out-label">وزن المتر</span><strong class="out-value" id="o1">--</strong></div>
+          <div class="out-item"><span class="out-label">سعر المتر</span><strong class="out-value" id="o2">--</strong></div>
+          <div class="out-item"><span class="out-label">عدد الوحدات / متر</span><strong class="out-value" id="o3">--</strong></div>
+          <div class="out-item highlight"><span class="out-label">تكلفة القطعة</span><strong class="out-value" id="o4">--</strong></div>
+          <div class="out-item"><span class="out-label">عدد الأمتار للطلب</span><strong class="out-value" id="o5">--</strong></div>
+          <div class="out-item"><span class="out-label">وزن الطلب</span><strong class="out-value" id="o6">--</strong></div>
+          <div class="out-item"><span class="out-label">الوزن قبل التشغيل</span><strong class="out-value" id="o7">--</strong></div>
+          <div class="out-item"><span class="out-label">وزن الهالك</span><strong class="out-value" id="o8">--</strong></div>
+          <div class="out-item"><span class="out-label">إجمالي هالك المتر</span><strong class="out-value" id="o9">--</strong></div>
+          <div class="out-item"><span class="out-label">سعر الهالك</span><strong class="out-value" id="o10">--</strong></div>
+          <div class="out-item highlight-alt"><span class="out-label">إجمالي سعر هالك المتر</span><strong class="out-value" id="o11">--</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Normal Calculator Sidebar -->
+  <div class="side-calc-overlay" id="sideCalcOverlay"></div>
+  <div class="side-calc" id="sideCalc">
+    <button class="side-calc-toggle" id="sideCalcToggle" aria-label="Toggle Calculator">
+      <svg class="icon-calc" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="16" y1="14" x2="16" y2="14.01"></line><line x1="16" y1="10" x2="16" y2="10.01"></line><line x1="12" y1="14" x2="12" y2="14.01"></line><line x1="12" y1="10" x2="12" y2="10.01"></line><line x1="8" y1="14" x2="8" y2="14.01"></line><line x1="8" y1="10" x2="8" y2="10.01"></line></svg>
+      <svg class="icon-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+    </button>
+    <div class="calc-content">
+      <div class="calc-display" id="calcDisplay">0</div>
+      <div class="calc-grid">
+        <div class="calc-btn clear" data-val="C">C</div>
+        <div class="calc-btn op" data-val="DEL">⌫</div>
+        <div class="calc-btn op" data-val="%">%</div>
+        <div class="calc-btn op" data-val="/">÷</div>
+        <div class="calc-btn num" data-val="7">7</div>
+        <div class="calc-btn num" data-val="8">8</div>
+        <div class="calc-btn num" data-val="9">9</div>
+        <div class="calc-btn op" data-val="*">×</div>
+        <div class="calc-btn num" data-val="4">4</div>
+        <div class="calc-btn num" data-val="5">5</div>
+        <div class="calc-btn num" data-val="6">6</div>
+        <div class="calc-btn op" data-val="-">-</div>
+        <div class="calc-btn num" data-val="1">1</div>
+        <div class="calc-btn num" data-val="2">2</div>
+        <div class="calc-btn num" data-val="3">3</div>
+        <div class="calc-btn op" data-val="+">+</div>
+        <div class="calc-btn num" data-val="0">0</div>
+        <div class="calc-btn num" data-val=".">.</div>
+        <div class="calc-btn eq" data-val="=">=</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
